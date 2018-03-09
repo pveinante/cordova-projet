@@ -1,0 +1,80 @@
+{% extends "::vueMere.html.twig" %} {#La vue fille hérite de la vue mère#}
+
+{% block menuPropreAuBundle %}
+
+{% endblock %}
+
+{% block contenuCentral %}
+
+  <div class="container">
+    <div class="row">
+      <div class="panel panel-default">
+        <div class="panel-heading"><h2><b><span class="fa fa-list"></span> Liste des Actualités</b></h2>
+          Options de tri:
+           <a href="{{path('follow_the_rhythm_accueilArtistesUniquement',{'page': 1, 'sens': 1})}}"><button type="button" class="btn btn-secondary">Actualites sur les artistes uniquement</button></a>
+          <a href="{{path('follow_the_rhythm_accueil',{'page': 1, 'sens': 2})}}" ><button class="btn btn-secondary" type="button">Chronologique</button></a>
+          <a href="{{path('follow_the_rhythm_accueil',{'page': 1, 'sens': 1})}}" ><button class="btn btn-secondary" type="button">Antéchronologique</button></a>          
+     <!--     <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Trier par ordre<span class="caret"></span></button>
+            <ul class="dropdown-menu">
+              <li>Chronologique</li>
+              <li>Antéchronologique</li>
+            </ul>
+          </div>-->
+        </div>
+     
+      <div class="list-group">
+
+      <!--Bouton "soumettre actualité"-->
+        <div class="list-group-item"><a href="{{path('follow_the_rhythm_soumettreActualite')}}"><button type="button" class="btn btn-primary"> + Soumettre actualité</button></a></div>
+      <!--AFFICHAGE DES ACTUALITEES-->
+        {% for actualiteCourante in tabActualites %}
+        
+          <div class="list-group-item"><h2><label>{{actualiteCourante.titre}}</label></h2>
+        <!-- si pas d'artiste concerné -->
+          {% if actualiteCourante.artiste is empty %}
+              <p><label>Pas d'artiste concerné</label></p>
+          {% else %}
+              <p><label>Artiste concerné : <a href="{{path('follow_the_rhythm_pageArtiste',{'id':actualiteCourante.artiste.id})}}" >{{actualiteCourante.artiste.nomDeScene}}</a> </label></p>
+          {% endif %}
+        <!-- si pas de concert concerné -->
+          {% if actualiteCourante.concert is empty %}
+              <p><label>Pas de concert lié</label></p>
+          {% else %}
+              <p><label>Concert lié : <a href="{{path('follow_the_rhythm_pageConcert',{'id':actualiteCourante.concert.id})}}" >{{actualiteCourante.concert.nom}}</a> </label></p>
+              <p><label>Lieu : {{actualiteCourante.concert.lieu}}</label></p>
+          {% endif %}
+          <p align="justify"><label>{{actualiteCourante.description}}</label></p>
+          <p><label>Date : {{actualiteCourante.dateActualite|date("d/m/Y")}}</label></p>
+        <!--Si coup(s) de coeur > 1-->
+          {% if actualiteCourante.nbCoupDeCoeurs > 1 %}
+              <button type="button" class="btn btn-primary"  onclick="isNotConnected();">♥ Coup de cœur</button> {{actualiteCourante.nbCoupDeCoeurs}} Coups de cœur 
+          {% else %}
+              <button type="button" class="btn btn-primary"  onclick="isNotConnected();">♥ Coup de cœur</button> {{actualiteCourante.nbCoupDeCoeurs}} Coup de cœur
+          {% endif %}   
+          {% if actualiteCourante.moderateur is empty %}
+          {% else %}
+             <!-- <p><label>Soumis par : {#actualiteCourante.moderateur.id#}</label></p> -->
+          {% endif %}
+            </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function isNotConnected(){
+    alert("Il faut être connecté pour accéder à cette fonctionnalité");
+  }
+  
+  /*function afficherArtistesUniquement(){
+    
+  }*/
+</script>
+{#Pagination#}
+<div align="center"><a href="#"><button class="btn btn-primary"><i class="fa fa-angle-double-up"></i> Haut de page <i class="fa fa-angle-double-up"></i></button></a></div>
+<div align=center>{% include "::pagination.html.twig" %}</div>
+{% endblock %}
+
+
