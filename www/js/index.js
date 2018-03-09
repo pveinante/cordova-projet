@@ -20,6 +20,7 @@ var app = {
     // Application Constructor
     initialize: function() {
         document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
+        document.getElementById('boutonValid').addEventListener('click', this.requete.bind(this), false);
     },
 
     // deviceready Event Handler
@@ -40,7 +41,28 @@ var app = {
         receivedElement.setAttribute('style', 'display:block;');
 
         console.log('Received Event: ' + id);
-    }
+    },
+    
+    requete: function(){
+	//	var ville = document.getElementById("zoneTexte").value;
+		var MyRequest = new XMLHttpRequest();
+
+		MyRequest.onreadystatechange = function(event) {
+			if (this.readyState === XMLHttpRequest.DONE) {
+				if (this.status === 200) {
+					console.log("Réponse reçue: %s", this.responseText);
+					var reponse = MyRequest.responseText;
+				} else {
+					console.log("Status de la réponse: %d (%s)", this.status, this.statusText);
+				}
+			}	
+		};
+		MyRequest.open('GET', "https://follow-the-rhythm-jbelderrain.c9users.io/follow_the_rhythm/web/app_dev.php/API/news", false);
+		MyRequest.send(null);
+		console.log(MyRequest.responseText);
+	}
 };
+
+
 
 app.initialize();
