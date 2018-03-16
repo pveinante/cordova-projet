@@ -31,24 +31,26 @@
             * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
                 * Enable inline JS: add 'unsafe-inline' to default-src
         -->
-        <!--<script src="bootstrap/js/jquery.js"></script>-->
-        <!--<script src="bootstrap/js/bootstrap.min.js"></script>-->
+        <script src="bootstrap/js/jquery.js"></script>
+        <script src="bootstrap/js/bootstrap.min.js"></script>
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
         <link rel="stylesheet" type="text/css" href="css/index.css">
-        <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <title>Follow The Rhythm</title>
     </head>
     <body>
-        <div class="app">
-            <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
-            </div>
-			 <p align="center"><img src="img/Follow2Logo.png" style=width:100% /></p>
-			 <input type="button" id="boutonValid" value="Test">
-			 <span class="glyphicon glyphicon-file"></span>
+        <div align="center"><h1>Follow The Rhythm <img src="img/Follow2Logo.png" style=width:10% /></h1></div>
+        <div class="container">
+            <div class="row">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><h2><b><span class="fa fa-list"></span> Liste des Actualités</b></h2></div>
+                     <div class="list-group"><label>KOTOL GIVE ME MANA!</label>
+                </div>
+            </div>    
+	    <input type="button" id="boutonValid" value="Test">
+		<span class="glyphicon glyphicon-file"></span>
         </div>
 		
         <script type="text/javascript" src="cordova.js"></script>

@@ -62,8 +62,7 @@ var app = {
 		console.log(MyRequest.responseText);
 		var reponse = JSON.parse(MyRequest.responseText);
 		var machin = reponse[0];
-		var remachin = JSON.parse(machin);
-		var result = remachin.id;
+		var result = machin.id;
 		console.log(result);
 		document.write(result);
 	}
