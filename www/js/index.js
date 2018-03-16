@@ -60,6 +60,12 @@ var app = {
 		MyRequest.open('GET', "https://follow-the-rhythm-jbelderrain.c9users.io/follow_the_rhythm/web/app_dev.php/API/news", false);
 		MyRequest.send(null);
 		console.log(MyRequest.responseText);
+		var reponse = JSON.parse(MyRequest.responseText);
+		var machin = reponse[0];
+		var remachin = JSON.parse(machin);
+		var result = remachin.id;
+		console.log(result);
+		document.write(result);
 	}
 };
 
